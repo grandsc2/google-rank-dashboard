@@ -6,7 +6,9 @@
     "keyword": "sichuan restaurant carrollton tx",
     "local_pack_position": 1,
     "found": true,
-    "match_score": 0.867
+    "match_score": 0.867,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -15,7 +17,9 @@
     "keyword": "chinese restaurant carrollton tx",
     "local_pack_position": 13,
     "found": true,
-    "match_score": 0.867
+    "match_score": 0.867,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -24,7 +28,9 @@
     "keyword": "sichuan food carrollton",
     "local_pack_position": 1,
     "found": true,
-    "match_score": 0.867
+    "match_score": 0.867,
+    "organic_position": 2,
+    "organic_found": true
   },
   {
     "date": "2026-10-01",
@@ -42,7 +48,9 @@
     "keyword": "mifen carrollton tx",
     "local_pack_position": 5,
     "found": true,
-    "match_score": 1.0
+    "match_score": 1.0,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -51,7 +59,9 @@
     "keyword": "dumplings carrollton tx",
     "local_pack_position": 11,
     "found": true,
-    "match_score": 1.0
+    "match_score": 1.0,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -60,7 +70,9 @@
     "keyword": "chinese noodles plano tx",
     "local_pack_position": 20,
     "found": true,
-    "match_score": 1.0
+    "match_score": 1.0,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -69,7 +81,9 @@
     "keyword": "mifen plano tx",
     "local_pack_position": null,
     "found": false,
-    "match_score": 0.08
+    "match_score": 0.08,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -78,7 +92,9 @@
     "keyword": "dumplings plano tx",
     "local_pack_position": null,
     "found": false,
-    "match_score": 0.444
+    "match_score": 0.444,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -87,7 +103,9 @@
     "keyword": "chinese noodles carrollton tx",
     "local_pack_position": 17,
     "found": true,
-    "match_score": 0.75
+    "match_score": 0.75,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
@@ -96,7 +114,9 @@
     "keyword": "noodle restaurant carrollton tx",
     "local_pack_position": 10,
     "found": true,
-    "match_score": 0.75
+    "match_score": 0.75,
+    "organic_position": 4,
+    "organic_found": true
   },
   {
     "date": "2026-10-01",
@@ -105,6 +125,8 @@
     "keyword": "hand pulled noodles carrollton tx",
     "local_pack_position": 17,
     "found": true,
-    "match_score": 0.741
+    "match_score": 0.741,
+    "organic_position": null,
+    "organic_found": false
   }
 ]

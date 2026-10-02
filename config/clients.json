@@ -2,6 +2,7 @@
   {
     "name": "Zhang's Bistro",
     "location": "Carrollton,Texas,United States",
+    "place_id": null,
     "keywords": [
       "sichuan restaurant carrollton tx",
       "chinese restaurant carrollton tx",
@@ -11,6 +12,7 @@
   {
     "name": "Yo! Bowl",
     "location": "Carrollton,Texas,United States",
+    "place_id": null,
     "keywords": [
       "chinese noodles carrollton tx",
       "mifen carrollton tx",
@@ -20,6 +22,7 @@
   {
     "name": "Yo! Bowl",
     "location": "Plano,Texas,United States",
+    "place_id": null,
     "keywords": [
       "chinese noodles plano tx",
       "mifen plano tx",
@@ -29,6 +32,7 @@
   {
     "name": "Han's Noodles",
     "location": "Carrollton,Texas,United States",
+    "place_id": null,
     "keywords": [
       "chinese noodles carrollton tx",
       "noodle restaurant carrollton tx",
