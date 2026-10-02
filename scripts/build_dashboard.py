@@ -7,6 +7,7 @@ and speeds up GitHub Pages load).
 Run after every run_check.py, or standalone:
   python scripts/build_dashboard.py
 """
+import base64
 import json
 import re
 import sys
@@ -17,11 +18,12 @@ HTML = ROOT / "dashboard" / "index.html"
 
 
 def build():
-    rankings = json.loads((ROOT / "dashboard" / "rankings.json").read_text())
-    reviews  = json.loads((ROOT / "dashboard" / "reviews.json").read_text())
+    raw      = json.loads((ROOT / "dashboard" / "data.json").read_text())
+    rankings = raw.get("rankings", raw) if isinstance(raw, dict) else raw
+    reviews  = raw.get("reviews", [])  if isinstance(raw, dict) else []
     html     = HTML.read_text()
 
-    def inject(src, key, data):
+    def inject_json(src, key, data):
         replacement = (
             f"<!-- INJECT:{key} -->"
             f"<script>window.__{key.upper()}__={json.dumps(data, separators=(',', ':'))}</script>"
@@ -34,11 +36,42 @@ def build():
             flags=re.DOTALL,
         )
 
-    html = inject(html, "rankings", rankings)
-    html = inject(html, "reviews",  reviews)
+    def inject_chartjs(src):
+        vendor = ROOT / "vendor" / "chart.umd.min.js"
+        if not vendor.exists():
+            return src
+        js = vendor.read_text()
+        blob = f"<!-- INJECT:chartjs --><script>{js}</script><!-- /INJECT:chartjs -->"
+        return re.sub(
+            r"<!-- INJECT:chartjs -->.*?<!-- /INJECT:chartjs -->",
+            lambda _: blob,
+            src,
+            flags=re.DOTALL,
+        )
+
+    def inject_logo(src):
+        logo_path = ROOT / "logo-icon.png"
+        if not logo_path.exists():
+            logo_path = ROOT / "dashboard" / "logo-icon.png"
+        if not logo_path.exists():
+            return src
+        b64 = base64.b64encode(logo_path.read_bytes()).decode()
+        data_uri = f"data:image/png;base64,{b64}"
+        replacement = f'<!-- INJECT:logo --><img src="{data_uri}" style="width:32px;height:32px;object-fit:contain" alt=""><!-- /INJECT:logo -->'
+        return re.sub(
+            r"<!-- INJECT:logo -->.*?<!-- /INJECT:logo -->",
+            replacement,
+            src,
+            flags=re.DOTALL,
+        )
+
+    html = inject_json(html, "rankings", rankings)
+    html = inject_json(html, "reviews",  reviews)
+    html = inject_logo(html)
+    html = inject_chartjs(html)
     HTML.write_text(html)
 
-    print(f"✓ Dashboard built — {len(rankings)} rank records, {len(reviews)} review records inlined")
+    print(f"✓ Dashboard built — {len(rankings)} rank records, {len(reviews)} review records inlined, logo embedded, Chart.js inlined")
 
 
 if __name__ == "__main__":

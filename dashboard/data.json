@@ -1,0 +1,236 @@
+{
+  "rankings": [
+    {
+      "date": "2026-10-01",
+      "client": "Zhang's Bistro",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "sichuan restaurant carrollton tx",
+      "local_pack_position": 1,
+      "found": true,
+      "match_score": 0.867,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Zhang's Bistro",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "chinese restaurant carrollton tx",
+      "local_pack_position": 13,
+      "found": true,
+      "match_score": 0.867,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Zhang's Bistro",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "sichuan food carrollton",
+      "local_pack_position": 1,
+      "found": true,
+      "match_score": 0.867,
+      "organic_position": 2,
+      "organic_found": true
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "chinese noodles carrollton tx",
+      "local_pack_position": 3,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "mifen carrollton tx",
+      "local_pack_position": 5,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "dumplings carrollton tx",
+      "local_pack_position": 11,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Plano,Texas,United States",
+      "keyword": "chinese noodles plano tx",
+      "local_pack_position": 20,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Plano,Texas,United States",
+      "keyword": "mifen plano tx",
+      "local_pack_position": null,
+      "found": false,
+      "match_score": 0.08,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Plano,Texas,United States",
+      "keyword": "dumplings plano tx",
+      "local_pack_position": null,
+      "found": false,
+      "match_score": 0.444,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Han's Noodles",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "chinese noodles carrollton tx",
+      "local_pack_position": 17,
+      "found": true,
+      "match_score": 0.75,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Han's Noodles",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "noodle restaurant carrollton tx",
+      "local_pack_position": 10,
+      "found": true,
+      "match_score": 0.75,
+      "organic_position": 4,
+      "organic_found": true
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Han's Noodles",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "hand pulled noodles carrollton tx",
+      "local_pack_position": 17,
+      "found": true,
+      "match_score": 0.741,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Zhang's Bistro",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "chinese food carrollton tx",
+      "local_pack_position": 13,
+      "found": true,
+      "match_score": 0.867,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "noodles carrollton tx",
+      "local_pack_position": 5,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Plano,Texas,United States",
+      "keyword": "noodles plano tx",
+      "local_pack_position": 18,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Han's Noodles",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "noodles carrollton tx",
+      "local_pack_position": 12,
+      "found": true,
+      "match_score": 0.75,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Carrollton,Texas,United States",
+      "keyword": "chinese food carrollton tx",
+      "local_pack_position": 11,
+      "found": true,
+      "match_score": 1.0,
+      "organic_position": null,
+      "organic_found": false
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Plano,Texas,United States",
+      "keyword": "chinese food plano tx",
+      "local_pack_position": null,
+      "found": false,
+      "match_score": 0.348,
+      "organic_position": null,
+      "organic_found": false
+    }
+  ],
+  "reviews": [
+    {
+      "date": "2026-10-01",
+      "client": "Zhang's Bistro",
+      "location": "Carrollton,Texas,United States",
+      "place_id": "ChIJK9eIRl4lTIYRyiTdfRkEZ6o",
+      "rating": 3.9,
+      "review_count": 423
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Carrollton,Texas,United States",
+      "place_id": "ChIJ80cAukslTIYRPrBR4wvD3ZM",
+      "rating": 4.8,
+      "review_count": 585
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Yo! Bowl",
+      "location": "Plano,Texas,United States",
+      "place_id": "ChIJI6LHmukjTIYRqfdih8y6Bng",
+      "rating": 4.6,
+      "review_count": 65
+    },
+    {
+      "date": "2026-10-01",
+      "client": "Han's Noodles",
+      "location": "Carrollton,Texas,United States",
+      "place_id": "ChIJp3HRwhklTIYRBp0bfF3t2-E",
+      "rating": 4.7,
+      "review_count": 312
+    }
+  ]
+}
