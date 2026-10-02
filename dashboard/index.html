@@ -1,0 +1,573 @@
+<title>Local Rank Dashboard</title>
+<style>
+  /* ── tokens ── */
+  :root {
+    --bg:       #f1f5f9;
+    --surface:  #ffffff;
+    --surface2: #f8fafc;
+    --text:     #0f172a;
+    --text2:    #64748b;
+    --border:   #e2e8f0;
+    --accent:   #2563eb;
+    --up:       #16a34a;
+    --down:     #dc2626;
+    --flat:     #64748b;
+    --radius:   12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:       #0f172a;
+      --surface:  #1e293b;
+      --surface2: #162032;
+      --text:     #f1f5f9;
+      --text2:    #94a3b8;
+      --border:   #334155;
+      --accent:   #60a5fa;
+      --up:       #4ade80;
+      --down:     #f87171;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:       #0f172a;
+    --surface:  #1e293b;
+    --surface2: #162032;
+    --text:     #f1f5f9;
+    --text2:    #94a3b8;
+    --border:   #334155;
+    --accent:   #60a5fa;
+    --up:       #4ade80;
+    --down:     #f87171;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── header ── */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-icon {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 7px;
+    display: grid; place-items: center;
+    color: #fff;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .header-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .header-sub {
+    font-size: 12px;
+    color: var(--text2);
+  }
+
+  /* ── tabs ── */
+  .tabs-wrap {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 14px 16px 12px;
+    border: none;
+    background: none;
+    color: var(--text2);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-loc {
+    font-weight: 400;
+    font-size: 11px;
+    opacity: .75;
+    margin-left: 4px;
+  }
+
+  /* ── main layout ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+  }
+
+  /* ── section heading ── */
+  .section-head {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin: 0 0 12px;
+  }
+
+  /* ── cards ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+  }
+  .card-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-top: 3px;
+    grid-row: 1; grid-column: 1;
+    flex-shrink: 0;
+  }
+  .card-kw {
+    font-size: 12px;
+    color: var(--text2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    grid-row: 1; grid-column: 2;
+    align-self: center;
+  }
+  .card-rank {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    grid-row: 2; grid-column: 1 / 3;
+    padding-top: 6px;
+    line-height: 1;
+  }
+  .card-rank.nr { color: var(--text2); font-size: 20px; }
+  .card-change {
+    grid-row: 2; grid-column: 3;
+    font-size: 12px;
+    font-weight: 600;
+    align-self: end;
+    padding-bottom: 2px;
+    white-space: nowrap;
+  }
+  .card-change.up   { color: var(--up); }
+  .card-change.down { color: var(--down); }
+  .card-change.flat { color: var(--flat); }
+  .card-change.new  { color: var(--up); }
+
+  /* ── chart ── */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 320px;
+  }
+
+  /* ── table ── */
+  .table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .table-scroll { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--surface2);
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody tr:not(:last-child) td {
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td {
+    padding: 10px 16px;
+    color: var(--text);
+    vertical-align: middle;
+  }
+  tbody tr:hover td { background: var(--surface2); }
+  .rank-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    min-width: 36px;
+    text-align: center;
+  }
+  .rank-pill.r1 { background: #dcfce7; color: #166534; }
+  .rank-pill.r2 { background: #dbeafe; color: #1e40af; }
+  .rank-pill.r3 { background: #ede9fe; color: #4c1d95; }
+  .rank-pill.r4 { background: #fef9c3; color: #854d0e; }
+  .rank-pill.high { background: #fee2e2; color: #991b1b; }
+  .rank-pill.nr { background: var(--border); color: var(--text2); }
+  :root[data-theme="dark"] .rank-pill.r1,
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .rank-pill.r1 { background: #14532d; color: #86efac; }
+    :root:not([data-theme="light"]) .rank-pill.r2 { background: #1e3a8a; color: #93c5fd; }
+    :root:not([data-theme="light"]) .rank-pill.r3 { background: #2e1065; color: #c4b5fd; }
+    :root:not([data-theme="light"]) .rank-pill.r4 { background: #713f12; color: #fde68a; }
+    :root:not([data-theme="light"]) .rank-pill.high { background: #7f1d1d; color: #fca5a5; }
+  }
+
+  /* ── states ── */
+  .state {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--text2);
+  }
+  .state h2 { font-size: 16px; color: var(--text); margin: 0 0 8px; }
+  .state code {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-family: ui-monospace, "Cascadia Code", monospace;
+    color: var(--text);
+  }
+
+  /* ── footnote ── */
+  .footnote {
+    font-size: 11px;
+    color: var(--text2);
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 0 16px; }
+    .tabs-wrap { padding: 0 12px; }
+    .main { padding: 16px 12px 48px; }
+    .chart-wrap { height: 260px; }
+  }
+</style>
+
+<header class="header">
+  <div class="header-left">
+    <div class="header-icon">📍</div>
+    <div>
+      <div class="header-title">Local Rank Dashboard</div>
+    </div>
+  </div>
+  <div id="last-updated" class="header-sub"></div>
+</header>
+
+<div class="tabs-wrap" id="tabs"></div>
+
+<div class="main" id="main">
+  <div class="state" id="loading">
+    <h2>Loading rankings…</h2>
+    <p>Fetching <code>rankings.json</code></p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"
+  integrity="sha512-6eFEh7bZCWWFNO1gHQKAT8rr1S5NHtLSK+oGxQxBgdCH7RMaG5ElUZU4HNfHNcYVHj2CfqBHTkwjFHkgdH0w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+// Okabe-Ito CVD-safe categorical palette (3 series)
+const COLORS = ['#0072B2', '#E69F00', '#009E73'];
+const COLORS_BG = ['rgba(0,114,178,0.12)', 'rgba(230,159,0,0.12)', 'rgba(0,158,115,0.12)'];
+
+let allData = [];
+let clients = [];
+let activeTab = 0;
+let activeChart = null;
+
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function fmtDate(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function rankPillClass(pos) {
+  if (pos === null) return 'nr';
+  if (pos === 1) return 'r1';
+  if (pos <= 3) return 'r2';
+  if (pos <= 5) return 'r3';
+  if (pos <= 10) return 'r4';
+  return 'high';
+}
+
+async function init() {
+  try {
+    const resp = await fetch('rankings.json');
+    if (!resp.ok) throw new Error(resp.status);
+    allData = await resp.json();
+  } catch {
+    document.getElementById('main').innerHTML = `
+      <div class="state">
+        <h2>Could not load rankings.json</h2>
+        <p>Serve this directory with a local server to view rankings:<br><br>
+        <code>python -m http.server 8000</code><br><br>
+        then open <code>http://localhost:8000/dashboard/</code></p>
+      </div>`;
+    return;
+  }
+
+  if (!allData.length) {
+    document.getElementById('main').innerHTML = `
+      <div class="state">
+        <h2>No ranking data yet</h2>
+        <p>Run the tracker to collect your first data points:<br><br>
+        <code>python scripts/run_check.py</code></p>
+      </div>`;
+    return;
+  }
+
+  // Group clients in order of first appearance
+  const seen = new Map();
+  for (const r of allData) {
+    const key = `${r.client}||${r.location}`;
+    if (!seen.has(key)) seen.set(key, { name: r.client, location: r.location });
+  }
+  clients = [...seen.values()];
+
+  // Last updated
+  const latest = allData.map(r => r.date).sort().at(-1);
+  document.getElementById('last-updated').textContent = `Last checked ${fmtDate(latest)}`;
+
+  renderTabs();
+  renderClient(0);
+}
+
+function renderTabs() {
+  const el = document.getElementById('tabs');
+  el.innerHTML = clients.map((c, i) =>
+    `<button class="tab ${i === activeTab ? 'active' : ''}" onclick="selectTab(${i})">
+      ${c.name} <span class="tab-loc">${c.location}</span>
+    </button>`
+  ).join('');
+}
+
+function selectTab(i) {
+  activeTab = i;
+  renderTabs();
+  renderClient(i);
+}
+
+function clientData(i) {
+  const c = clients[i];
+  return allData.filter(r => r.client === c.name && r.location === c.location);
+}
+
+function renderClient(i) {
+  const data = clientData(i);
+  const keywords = [...new Map(data.map(r => [r.keyword, r.keyword])).keys()];
+  const dates = [...new Set(data.map(r => r.date))].sort();
+
+  document.getElementById('main').innerHTML = `
+    <p class="section-head">Current Rankings</p>
+    <div class="cards" id="cards"></div>
+    <p class="section-head">Rank Trend</p>
+    <div class="chart-card">
+      <div class="chart-wrap"><canvas id="chart"></canvas></div>
+    </div>
+    <p class="section-head">Weekly History</p>
+    <div class="table-card"><div class="table-scroll" id="tbl"></div></div>
+    <p class="footnote">
+      Google Local Pack position — #1 = top of the map pack.
+      N/R = not found in top 20 results. Data collected weekly via SerpAPI.
+    </p>`;
+
+  renderCards(data, keywords, dates);
+  renderChart(data, keywords, dates);
+  renderTable(data, keywords, dates);
+}
+
+function renderCards(data, keywords, dates) {
+  const latestDate = dates.at(-1);
+  const prevDate = dates.at(-2);
+
+  document.getElementById('cards').innerHTML = keywords.map((kw, i) => {
+    const curr = data.find(r => r.date === latestDate && r.keyword === kw);
+    const prev = prevDate ? data.find(r => r.date === prevDate && r.keyword === kw) : null;
+    const currPos = curr?.found ? curr.local_pack_position : null;
+    const prevPos = prev?.found ? prev.local_pack_position : null;
+
+    let changeText = '', changeClass = '';
+    if (currPos !== null && prevPos !== null) {
+      const diff = prevPos - currPos; // positive = moved up = improved
+      if (diff > 0) { changeText = `↑ ${diff}`; changeClass = 'up'; }
+      else if (diff < 0) { changeText = `↓ ${Math.abs(diff)}`; changeClass = 'down'; }
+      else { changeText = '—'; changeClass = 'flat'; }
+    } else if (currPos !== null && prevPos === null) {
+      changeText = 'NEW'; changeClass = 'new';
+    }
+
+    return `<div class="card">
+      <div class="card-dot" style="background:${COLORS[i % COLORS.length]}"></div>
+      <div class="card-kw" title="${kw}">${kw}</div>
+      <div class="card-rank ${currPos === null ? 'nr' : ''}">${currPos !== null ? '#' + currPos : 'N/R'}</div>
+      <div class="card-change ${changeClass}">${changeText}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderChart(data, keywords, dates) {
+  const surface = cssVar('--surface');
+  const textMuted = cssVar('--text2') || '#64748b';
+  const gridColor = 'rgba(128,128,128,0.12)';
+
+  const datasets = keywords.map((kw, i) => ({
+    label: kw,
+    data: dates.map(d => {
+      const r = data.find(x => x.date === d && x.keyword === kw);
+      return r?.found ? r.local_pack_position : null;
+    }),
+    borderColor: COLORS[i % COLORS.length],
+    backgroundColor: COLORS_BG[i % COLORS_BG.length],
+    borderWidth: 2,
+    pointRadius: 5,
+    pointHoverRadius: 7,
+    pointBackgroundColor: COLORS[i % COLORS.length],
+    pointBorderColor: surface || '#fff',
+    pointBorderWidth: 2,
+    tension: 0.25,
+    spanGaps: false,
+    fill: false,
+  }));
+
+  const allPos = data.filter(r => r.found).map(r => r.local_pack_position);
+  const yMax = allPos.length ? Math.max(...allPos) + 2 : 12;
+
+  if (activeChart) activeChart.destroy();
+  activeChart = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: { labels: dates.map(fmtDate), datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        y: {
+          reverse: true,
+          min: 1,
+          max: yMax,
+          ticks: { stepSize: 1, color: textMuted },
+          grid: { color: gridColor },
+          border: { dash: [3, 3] },
+          title: { display: true, text: 'Position', color: textMuted, font: { size: 11 } },
+        },
+        x: {
+          ticks: { color: textMuted },
+          grid: { color: gridColor },
+          border: { dash: [3, 3] },
+        },
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          align: 'start',
+          labels: {
+            color: cssVar('--text') || '#0f172a',
+            usePointStyle: true,
+            pointStyle: 'circle',
+            font: { size: 12 },
+            padding: 20,
+          },
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.y;
+              const label = ctx.dataset.label;
+              const short = label.length > 35 ? label.slice(0, 33) + '…' : label;
+              return ` ${short}: ${v !== null ? '#' + v : 'N/R'}`;
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+function renderTable(data, keywords, dates) {
+  const recent = [...dates].reverse().slice(0, 10);
+  const head = keywords.map((kw, i) =>
+    `<th><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${COLORS[i % COLORS.length]};margin-right:6px;vertical-align:middle"></span>${kw}</th>`
+  ).join('');
+
+  const rows = recent.map(d => {
+    const cells = keywords.map(kw => {
+      const r = data.find(x => x.date === d && x.keyword === kw);
+      const pos = r?.found ? r.local_pack_position : null;
+      const cls = rankPillClass(pos);
+      const label = pos !== null ? '#' + pos : 'N/R';
+      return `<td><span class="rank-pill ${cls}">${label}</span></td>`;
+    }).join('');
+    return `<tr><td>${fmtDate(d)}</td>${cells}</tr>`;
+  }).join('');
+
+  document.getElementById('tbl').innerHTML = `
+    <table>
+      <thead><tr><th>Date</th>${head}</tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+init();
+</script>
