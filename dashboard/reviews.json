@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "date": "2026-10-01",
+    "client": "Zhang's Bistro",
+    "location": "Carrollton,Texas,United States",
+    "place_id": "ChIJK9eIRl4lTIYRyiTdfRkEZ6o",
+    "rating": 3.9,
+    "review_count": 423
+  },
+  {
+    "date": "2026-10-01",
+    "client": "Yo! Bowl",
+    "location": "Carrollton,Texas,United States",
+    "place_id": "ChIJ80cAukslTIYRPrBR4wvD3ZM",
+    "rating": 4.8,
+    "review_count": 585
+  },
+  {
+    "date": "2026-10-01",
+    "client": "Yo! Bowl",
+    "location": "Plano,Texas,United States",
+    "place_id": "ChIJI6LHmukjTIYRqfdih8y6Bng",
+    "rating": 4.6,
+    "review_count": 65
+  },
+  {
+    "date": "2026-10-01",
+    "client": "Han's Noodles",
+    "location": "Carrollton,Texas,United States",
+    "place_id": "ChIJp3HRwhklTIYRBp0bfF3t2-E",
+    "rating": 4.7,
+    "review_count": 312
+  }
+]

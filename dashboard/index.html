@@ -1,30 +1,31 @@
 <title>Local Rank Dashboard</title>
 <style>
   :root {
-    --bg:      #f1f5f9;
+    --bg:      #fdf8f4;
     --surface: #ffffff;
-    --surf2:   #f8fafc;
-    --text:    #0f172a;
-    --text2:   #64748b;
-    --border:  #e2e8f0;
-    --accent:  #2563eb;
+    --surf2:   #fef9f5;
+    --text:    #1a0f00;
+    --text2:   #78634f;
+    --border:  #edd9c8;
+    --accent:  #F47820;
+    --accent2: #d4620f;
     --up:      #16a34a;
     --down:    #dc2626;
-    --flat:    #64748b;
+    --flat:    #78634f;
     --r:       12px;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg:#0f172a; --surface:#1e293b; --surf2:#162032;
-      --text:#f1f5f9; --text2:#94a3b8; --border:#334155;
-      --accent:#60a5fa; --up:#4ade80; --down:#f87171;
+      --bg:#1a0f00; --surface:#261600; --surf2:#1f1100;
+      --text:#fdf0e4; --text2:#b89474; --border:#4a2e10;
+      --accent:#FF9838; --accent2:#ffb060; --up:#4ade80; --down:#f87171;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg:#0f172a; --surface:#1e293b; --surf2:#162032;
-    --text:#f1f5f9; --text2:#94a3b8; --border:#334155;
-    --accent:#60a5fa; --up:#4ade80; --down:#f87171;
+    --bg:#1a0f00; --surface:#261600; --surf2:#1f1100;
+    --text:#fdf0e4; --text2:#b89474; --border:#4a2e10;
+    --accent:#FF9838; --accent2:#ffb060; --up:#4ade80; --down:#f87171;
     color-scheme: dark;
   }
 
@@ -34,7 +35,8 @@
   /* header */
   .hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
   .hdr-l{display:flex;align-items:center;gap:10px}
-  .hdr-icon{width:28px;height:28px;background:var(--accent);border-radius:7px;display:grid;place-items:center;color:#fff;font-size:14px;flex-shrink:0}
+  .hdr-icon{width:32px;height:32px;flex-shrink:0;display:grid;place-items:center}
+  .hdr-icon img{width:32px;height:32px;object-fit:contain}
   .hdr-title{font-size:15px;font-weight:600;letter-spacing:-.01em}
   .hdr-sub{font-size:12px;color:var(--text2)}
 
@@ -71,6 +73,7 @@
   .toggle-group{display:flex;gap:4px}
   .tgl{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:none;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
   .tgl.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tgl:hover:not(.active){border-color:var(--accent);color:var(--accent)}
   .chart-wrap{position:relative;height:300px}
 
   /* reviews */
@@ -124,7 +127,7 @@
 
 <header class="hdr">
   <div class="hdr-l">
-    <div class="hdr-icon">📍</div>
+    <div class="hdr-icon"><img src="logo-icon.png" alt=""></div>
     <div><div class="hdr-title">Local Rank Dashboard</div></div>
   </div>
   <div id="last-updated" class="hdr-sub"></div>

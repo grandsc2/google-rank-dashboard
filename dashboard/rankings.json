@@ -39,7 +39,9 @@
     "keyword": "chinese noodles carrollton tx",
     "local_pack_position": 3,
     "found": true,
-    "match_score": 1.0
+    "match_score": 1.0,
+    "organic_position": null,
+    "organic_found": false
   },
   {
     "date": "2026-10-01",
