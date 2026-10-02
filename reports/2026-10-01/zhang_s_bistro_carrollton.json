@@ -1,0 +1,22 @@
+{
+  "client": "Zhang's Bistro",
+  "location": "Carrollton,Texas,United States",
+  "date": "2026-10-01",
+  "rankings": [
+    {
+      "keyword": "chinese restaurant carrollton tx",
+      "position": 13,
+      "found": true
+    },
+    {
+      "keyword": "sichuan food carrollton",
+      "position": 1,
+      "found": true
+    },
+    {
+      "keyword": "sichuan restaurant carrollton tx",
+      "position": 1,
+      "found": true
+    }
+  ]
+}

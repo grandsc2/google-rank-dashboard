@@ -79,5 +79,32 @@
     "local_pack_position": null,
     "found": false,
     "match_score": 0.444
+  },
+  {
+    "date": "2026-10-01",
+    "client": "Han's Noodles",
+    "location": "Carrollton,Texas,United States",
+    "keyword": "chinese noodles carrollton tx",
+    "local_pack_position": 17,
+    "found": true,
+    "match_score": 0.75
+  },
+  {
+    "date": "2026-10-01",
+    "client": "Han's Noodles",
+    "location": "Carrollton,Texas,United States",
+    "keyword": "noodle restaurant carrollton tx",
+    "local_pack_position": 10,
+    "found": true,
+    "match_score": 0.75
+  },
+  {
+    "date": "2026-10-01",
+    "client": "Han's Noodles",
+    "location": "Carrollton,Texas,United States",
+    "keyword": "hand pulled noodles carrollton tx",
+    "local_pack_position": 17,
+    "found": true,
+    "match_score": 0.741
   }
 ]
