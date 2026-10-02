@@ -13,6 +13,7 @@ load_dotenv()
 from src.tracker import check_local_rank, check_organic_rank
 from src.reviews import fetch_reviews
 from src import db
+from scripts.build_dashboard import build as build_dashboard
 
 
 def main():
@@ -86,8 +87,9 @@ def main():
         reviews_saved = db.append_reviews(review_results)
         print(f"✓ Reviews: {reviews_saved} record(s) saved")
 
-        # Reload clients.json in case place_ids were cached
         clients = json.loads(config_path.read_text())
+
+    build_dashboard()
 
 
 if __name__ == "__main__":
