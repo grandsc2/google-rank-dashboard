@@ -7,4 +7,5 @@ env/
 *.egg-info/
 .env
 .DS_Store
+credentials/
 Thumbs.db
